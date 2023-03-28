@@ -11,7 +11,7 @@
 * [1.4b Computational Methods](analysis/1.4b-computational-methods.md)
 * [1.5 Success Criteria](analysis/1.5-success-criteria.md)
 * [1.6 Hardware and Software Requirements](analysis/1.6-hardware-and-software-requirements.md)
-* [References](analysis/references.md)
+* [Reference List](analysis/reference-list.md)
 
 ## 2 Design and Development <a href="#design-and-development" id="design-and-development"></a>
 
