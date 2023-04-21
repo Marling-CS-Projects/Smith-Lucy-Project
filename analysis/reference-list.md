@@ -1,7 +1,5 @@
 # Reference List
 
-Reference list
-
 Alley, R.B., Emanuel, K.A. and Zhang, F. (2019). Advances in weather prediction. _Science_, \[online] 363(6425), pp.342–344. doi:[https://doi.org/10.1126/science.aav7274](https://doi.org/10.1126/science.aav7274).
 
 Anbarcı, N., Floehr, E., Lee, J. and Song, J. (2008). _Economic bias of weather forecasting: a spatial modeling approach_. \[online] [www.semanticscholar.org.](https://www.semanticscholar.org/) Available at: [https://www.semanticscholar.org/paper/Economic-bias-of-weather-forecasting%3A-a-spatial-Anbarc%C4%B1-Floehr/c74cbd575be5398238f78622de62f8c6dfdc62ca](https://www.semanticscholar.org/paper/Economic-bias-of-weather-forecasting%3A-a-spatial-Anbarc%C4%B1-Floehr/c74cbd575be5398238f78622de62f8c6dfdc62ca) \[Accessed 28 Mar. 2023].
