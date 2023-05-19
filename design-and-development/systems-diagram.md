@@ -2,9 +2,9 @@
 
 ## Systems Diagram
 
-![](https://github.com/Marling-School/alevel-project-template/blob/docs/.gitbook/assets/System%20Diagram.jpg)
+<figure><img src="../.gitbook/assets/Screenshot 2023-05-19 at 14.54.54.png" alt=""><figcaption></figcaption></figure>
 
-This diagram shows the different parts of the game that I will focus on creating. I have split each section into smaller sub-sections. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece together the game. I have broken the project down this way as it roughly corresponds to the success criteria.
+This diagram shows the different parts of the weather monitoring and prediction system that I will be focusing on. I have split each section into smaller sub-sections. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece the personal weather station together. I have broken the project down this way as it roughly corresponds to the success criteria. Blue sections represent features that I must include for my solution to be functional, while the purple section includes features that a stakeholder may want to include but are not nesessary to complete the project.
 
 ## Usability Features
 
