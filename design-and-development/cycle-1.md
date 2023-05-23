@@ -1,16 +1,15 @@
-# 2.2.1 Cycle 1
+# 2.2.1 Cycle 1: Data Collection
 
 ## Design
 
-In this cycle, I am going to focus on seeing how my program can interact with the Particle Argon. This will involve testing a program that collects data&#x20;
+In this first cycle, I have decided to use the Particle Argon (a Wi-Fi enabled development board) to program data collection for my personal weather station. I will use Visual Studio Code as an IDE and the Particle Workbench extension to create my project.&#x20;
+
+I aim to learn how the Particle Argon communicates with and takes readings from sensors to take measurements from the environment. This will include measurments of pressure, humidity, temperature and air quality. Once I have tested how these different sensors work individually, I will design a program that takes readings from these sensors simultaneously.
 
 ### Objectives
 
-\[describe the cycle]
-
-* [ ] Set up a basic system with sensors
-* [ ] Write a program that can collect data from sensors
-*
+* [ ] Set up basic project with Particle Argon
+* [ ] Design a program that communicates with sensors using C++
 
 ### Usability Features
 
