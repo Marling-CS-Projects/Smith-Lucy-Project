@@ -2,9 +2,9 @@
 
 ## Systems Diagram
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-05-22 at 09.13.21.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-05-23 at 09.38.55 (1).png" alt=""><figcaption></figcaption></figure>
 
-This diagram shows the different parts of the weather monitoring and prediction system that I will be focusing on. I have split each section into smaller sub-sections, using [computional methods ](../analysis/1.4b-computational-methods.md)such as decomposition. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece the personal weather station together. Blue sections represent features that I must include for my solution to be functional, while the purple section includes features that a stakeholder may want to include but are not essential to completing the project. Each of these components corresponds roughly to a section in [1.5 Sucess Criteria](../analysis/1.5-success-criteria.md).
+This diagram shows the different parts of the weather monitoring and prediction system that I will be focusing on. I have split each section into smaller sub-sections, using [computional methods ](../analysis/1.4b-computational-methods.md)such as decomposition. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece the personal weather station together. Blue sections represent features that I must include for my solution to be functional, while the purple section includes features that a stakeholder may want to include but are not essential to completing the project. Each of these components corresponds roughly to the [sucess criteria](../analysis/1.5-success-criteria.md).
 
 ## Usability Features
 
@@ -36,37 +36,33 @@ All previous measurements must be recorded so that trends tracked by the user. T
 
 ### Engaging
 
-Making the solution for the user will ensure that the device is interesting and easy to use. While the main purpose of this project is to provide a stakeholder usable information about their local environment, my solution must still be engaging and interesting to use. I must also ensure my solution prefferable to other traditional weather applications.
-
-
-
-The solution is engaging for the user to use. To do this, I will create 5 levels and an online multiplayer mode to keep the players engaged and allow them to have fun while playing the game. Using vector style art will also make the game nicer to look at than blocks, so will draw more people in, keeping them engaged.
+Making the solution for the user will ensure that the device is interesting and easy to use. While the main purpose of this project is to provide a stakeholder usable information about their local environment, my solution must still be engaging and interesting to use. I must also ensure my solution preferable to other traditional weather applications. To achive this, I will try to make the app as engaging as possible. I will give the app a colourful design, and use tables and graphs to display weather data in an interesting way. By carefully considering the design of the weather station, I will be able grab the attention of the user so that they can make the best use of the personal weather station's features.
 
 #### Aims
 
-* Create a series of levels to work through
-* Create a multiplayer mode to play
-* Incorporate a style of game art the suits the game
+* Design an app that is colourful and easy to navigate
+* Present all weather data in the form of graphs and tables to grab the attention of the user
 
 ### Error Tolerant
 
-The solution should have as few errors as possible and if one does occur, it should be able to correct itself. To do this, I will write my code to manage as many different game scenarios as possible so that it will not crash when someone is playing it.
+In order to ensure my solution is error tolerant, I need to program the app to be able to deal with any errors or bugs in data. Errors that could occur include difficulties connecting the weather station and pulling data from the database. Additionally, my solution will have to deal with incorrect or damaged data and not include it in processing. I will also need to test both the weather station and the app thoroughly to ensure both work together correctly.
 
 #### Aims
 
-* The game doesn't crash
-* The game does not contain any bugs that damage the user experience
+* The app should be able to communicate with the weather station and database
+* Any anomalous or incorrect data should not be displayed on the weather app&#x20;
 
 ### Easy To Learn
 
-The solution should be easy to use and not be over complicated. To do this, I will create simple controls for the game. I will make sure that no more controls are added than are needed in order to keep them as simple as possible for the players.
+To ensure that my weather monitoring system isn't to complicated for a stakeholder to use, I need to simplify the setting up process as much as possible. On the app I will need to include a section that explains how to set up and use the weather station, and how to connect it to the internet. From there, the app must be straight forward to use and shouldn't require much additional guidence. The stakeholder should start recieving inputs from their outdoor environment on the app and easily understand the data being presented.
 
 #### Aims
 
-* Create a list of controls for the game
-* Create an in-level guide that helps players learn how to play the game
+* Create a section that explains how to set up the weather station on the app
+* Include a tutorial explaining what the features of the app itself are and how to use them
+* All other processes should take place automatically and therefore not require any user input
 
-## Pseudocode for the Game
+## Pseudocode for the project
 
 ### Pseudocode for game
 
