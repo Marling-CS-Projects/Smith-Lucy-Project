@@ -2,12 +2,15 @@
 
 ## Design
 
+In this cycle, I am going to focus on seeing how my program can interact with the Particle Argon. This will involve testing a program that collects data&#x20;
+
 ### Objectives
 
 \[describe the cycle]
 
-* [x] Do a thing
-* [x] Do another thing
+* [ ] Set up a basic system with sensors
+* [ ] Write a program that can collect data from sensors
+*
 
 ### Usability Features
 

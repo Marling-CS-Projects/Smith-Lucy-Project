@@ -62,9 +62,9 @@ To ensure that my weather monitoring system isn't to complicated for a stakehold
 * Include a tutorial explaining what the features of the app itself are and how to use them
 * All other processes should take place automatically and therefore not require any user input
 
-## Pseudocode for the project
+## Pseudocode for this project
 
-### Pseudocode for game
+### Pseudocode for app
 
 This is the basic layout of the object to store the details of the game. This will be what is rendered as it will inherit all important code for the scenes.
 
