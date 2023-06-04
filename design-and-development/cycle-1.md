@@ -64,15 +64,22 @@ end procedure
 
 ### 1.1
 
-In this part of the cycle, I wanted to get used to programming the Particle Argon, and set up a basic program that can collect data from its surroundings.
+In this part of the cycle, I wanted to get used to programming the Particle Argon, and set up a basic program that can collect data from its surroundings.&#x20;
 
-| Structure Name | Structure types | Description |
-| -------------- | --------------- | ----------- |
-|                |                 |             |
-|                |                 |             |
-|                |                 |             |
+<figure><img src="../.gitbook/assets/Argon cycle 1.jpg" alt=""><figcaption><p>Particle Argon basic setup</p></figcaption></figure>
+
+I first set up the particle argon and attached it to a grove shield board. I then attached a sensor to the 12C\_2 pin, and connected it to a lithium battary so I could test the device wirelessly.
 
 ## Data structures
+
+| Structure Name | Structure types  | Description                                                                                               |
+| -------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
+| temp           | Integer Variable | Stores the temperature value that is output by the sensor (in degrees celcius)                            |
+| humidity       | Integer Variable | Stores the humidity value that is output by the sensor (as a percentage)                                  |
+| pressure       | Integer Variable | Stores the atmospheric pressure value that is output by the sensor (in Pascals)                           |
+| altitude       | Integer Variable | Stores the approximate altitude based on the value output for pressure and sea level pressure (1013.25Pa) |
+
+The program in C++ that I used to collect data from the BME280 sensor can be seen below.
 
 ```cpp
 #include "Adafruit_BME280.h"
@@ -99,16 +106,50 @@ void setup() {
 
 
 void loop() {
-
+  delay(1000)//wait one second between readings
   temp = (int)bme.readTemperature();
   humidity = (int)bme.readHumidity();
   pressure = (int)bme.readPressure();
   altitude = (int)bme.readAltitude(1013.25); //sea level pressure, estimates altitude
 
   Particle.publish("testing");
+  
+  
 
 }
 ```
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-04 at 19.11.46.png" alt=""><figcaption><p>Values recieved from sensors</p></figcaption></figure>
+
+When I ran the program, I was sucessfully able to recieve readings for temperature, humidity, pressure and altitude, so the code passed the test. However, I decided to make some slight alterations to the code so that sensor readings can be displayed on the serial monitor.
+
+To set up serial communication, I added the following line to the setup() function.
+
+```cpp
+Serial.begin(9600);
+```
+
+I then added the following lines of code at the end of loop().
+
+```cpp
+Serial.print("Temperature: ");
+Serial.println(temp);
+
+Serial.print("Humidity: ");
+Serial.println(humidity);
+
+Serial.print("Pressure: ");
+Serial.println(pressure);
+
+Serial.print("Altitude: ");
+Serial.println(altitude);
+```
+
+Once again, the program successful displayed the following values, this time on the serial monitor.
+
+### 1.2
+
+In this section, I am going to add&#x20;
 
 ### Outcome
 
