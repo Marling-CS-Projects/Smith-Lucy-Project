@@ -147,6 +147,8 @@ Serial.println(altitude);
 
 Once again, the program successful displayed the following values, this time on the serial monitor.
 
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-04 at 20.30.16.png" alt=""><figcaption></figcaption></figure>
+
 ### 1.2
 
 In this section, I am going to add&#x20;
