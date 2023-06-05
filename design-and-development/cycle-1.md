@@ -151,7 +151,29 @@ Once again, the program successful displayed the following values, this time on 
 
 ### 1.2
 
-In this section, I am going to add&#x20;
+In this part of the cycle, I added the air quality monitoring sensor and dust sensor to the weather station. I started by separating each sensor into a different function, so each could be tested individually. After checking that the program for the Barometer Sensor still passed  the test, I moved on to programming the other components.&#x20;
+
+The code for the air quality monitoring and dust level sensor can be seen below:
+
+````cpp
+#include "Air_Quality_Sensor.h"
+#include <math.h>
+
+void getAirQualityReadings(){
+  //Collects readings from sensors
+}
+
+void getDustSensorReadings(){
+  //Collects readings from sensors
+}
+```
+````
+
+Now I am going to add the light sensor.
+
+### 1.3
+
+To ensure that my weather station works correctly, in this section I am going to check the accuracy of the sensor readings I have collected.
 
 ### Outcome
 
