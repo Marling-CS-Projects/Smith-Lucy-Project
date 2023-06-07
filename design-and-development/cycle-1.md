@@ -22,43 +22,62 @@ In this cycle, I need to ensure that my weather station can easily be used and n
 ### Pseudocode
 
 ```
-baroPin = input
 int temp = 0
-int humid = 0
-int press = 0
-int alti = 0
+int humidity = 0
+int pressure = 0
+int altitude = 0
+float concentration = 0
+int light = 0
+int sound = 0
 
-getBaroTemp(){
+getBarometerReadings(){
     activate baroPin sensor
     temp = read temperature
-    return temp
+    humidity = read humidity
+    pressure = read pressure
+    altitude = calculate altitude
 }
-getBaroPress(){
-    activate baroPin sensor
-    press = read pressure
-    return press
+getAirQualityReadings(){
+    activate air quality sensor
+    airQuality = read air quality
+    
 }
-getBaroHumid(){
-    activate baroPin sensor
-    humid = read humidity
-    return humid
-}
-
-getBaroAlti(){
-    activate baroPin sensor
-    alti = read altitude (pressure at sea level)
-    return alti
+getDustSensorReadings(){
+    activate dust sensor
+    concentration = read dust
 }
 
-print getBaroTemp()
-print getBaroPress()
-print getBaroHumid()
-print getBaroAlti()
+getLightSensorReadings(){
+    activate light sensor
+    light = read light
+}
+
+getSoundSensorReadings(){
+    activate sound sensor
+    sound = read sound
+    
+
+print temp
+print humidity
+print pressure
+print altitude
+print airQuality
+print concentration
+print lightVal
     
 end procedure
 ```
 
 
+
+## Data structures
+
+| Structure Name | Structure types  | Description                                                                                               |
+| -------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
+| temp           | Integer Variable | Stores the temperature value that is output by the sensor (in degrees celcius)                            |
+| humidity       | Integer Variable | Stores the humidity value that is output by the sensor (as a percentage)                                  |
+| pressure       | Integer Variable | Stores the atmospheric pressure value that is output by the sensor (in Pascals)                           |
+| altitude       | Integer Variable | Stores the approximate altitude based on the value output for pressure and sea level pressure (1013.25Pa) |
 
 ## Development
 
@@ -69,15 +88,6 @@ In this part of the cycle, I wanted to get used to programming the Particle Argo
 <figure><img src="../.gitbook/assets/Argon cycle 1.jpg" alt=""><figcaption><p>Particle Argon basic setup</p></figcaption></figure>
 
 I first set up the particle argon and attached it to a grove shield board. I then attached a sensor to the 12C\_2 pin, and connected it to a lithium battary so I could test the device wirelessly.
-
-## Data structures
-
-| Structure Name | Structure types  | Description                                                                                               |
-| -------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
-| temp           | Integer Variable | Stores the temperature value that is output by the sensor (in degrees celcius)                            |
-| humidity       | Integer Variable | Stores the humidity value that is output by the sensor (as a percentage)                                  |
-| pressure       | Integer Variable | Stores the atmospheric pressure value that is output by the sensor (in Pascals)                           |
-| altitude       | Integer Variable | Stores the approximate altitude based on the value output for pressure and sea level pressure (1013.25Pa) |
 
 The program in C++ that I used to collect data from the BME280 sensor can be seen below.
 
@@ -151,25 +161,74 @@ Once again, the program successful displayed the following values, this time on 
 
 ### 1.2
 
-In this part of the cycle, I added the air quality monitoring sensor and dust sensor to the weather station. I started by separating each sensor into a different function, so each could be tested individually. After checking that the program for the Barometer Sensor still passed  the test, I moved on to programming the other components.&#x20;
+In this part of the cycle, I added the air quality monitoring sensor and dust sensor to the weather station. I decided to use procedures to separate each sensor. This will make it easier to test components individually and debug my code without affecting the other data readings.
 
-The code for the air quality monitoring and dust level sensor can be seen below:
+#### Temperature, Humidity, Pressure and Altitude
 
-````cpp
-#include "Air_Quality_Sensor.h"
-#include <math.h>
-
-void getAirQualityReadings(){
+```cpp
+void getBarometerReadings() {
   //Collects readings from sensors
-}
-
-void getDustSensorReadings(){
-  //Collects readings from sensors
+  temp = (int)bme.readTemperature();
+  humidity = (int)bme.readHumidity();
+  pressure = (int)bme.readPressure();
+  altitude = (int)bme.readAltitude(1013.25);
 }
 ```
-````
 
-Now I am going to add the light sensor.
+&#x20;After checking that the program for the Barometer Sensor still passed, I moved on to programming the other components.
+
+#### Air Quality
+
+The code for the air quality monitoring can be seen below.&#x20;
+
+```cpp
+//Library for air quality sensor
+#include "Air_Quality_Sensor.h"
+
+//Pin for air quality sensor
+#define AQS_PIN A2
+AirQualitySensor aqSensor(AQS_PIN);
+
+//Initiates variable airQuality
+String airQuality = "Loading";
+
+//Function that collects readings from AQ sensor
+
+void getAirQualityReadings(){
+
+  //Gets sensor reading
+  int airQualityVal = aqSensor.slope();
+
+  //Assigns air quality
+  if (airQualityVal == AirQualitySensor:: FORCE_SIGNAL) {
+    airQuality = "Dangerous Level";
+  }
+  else if (airQualityVal == AirQualitySensor:: HIGH_POLLUTION) {
+    airQuality = "High Polution";
+  }
+  else if (airQualityVal == AirQualitySensor:: LOW_POLLUTION) {
+    airQuality = "Low Polution";
+  }
+  else if (airQualityVal == AirQualitySensor:: FRESH_AIR) {
+    airQuality = "Fresh Air";
+  }
+  else {
+    airQuality = "Reading Unsuccessful";
+  }
+
+}
+
+```
+
+After running the code, I was successfully able to get an output for the air quality on the particle console, which can be seen below. The other sensors also continued to work as expected.
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-07 at 16.49.28.png" alt=""><figcaption></figcaption></figure>
+
+#### Dust Concentration
+
+#### Light
+
+#### Sound
 
 
 
