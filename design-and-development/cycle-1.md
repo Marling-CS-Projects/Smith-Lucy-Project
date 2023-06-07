@@ -171,25 +171,35 @@ void getDustSensorReadings(){
 
 Now I am going to add the light sensor.
 
+
+
 ### 1.3
 
 To ensure that my weather station works correctly, in this section I am going to check the accuracy of the sensor readings I have collected.
 
 ### Outcome
 
+The completed code written that passed this cycle can be seen below.
+
+```
+// Some code
+```
+
+### Testing
+
+The table below outlines a summary of the results from my testing.
+
+| Test | Instructions                                                                                                                 | What I expect                                                                               | What actually happens                                                                                         | Pass/Fail |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------- |
+| 1    | Compile and flash code to Argon device ([See 1.1](cycle-1.md#1.1))                                                           | Code should compile and flash without errors. Device should then reconnect to the internet. | The program was sucessfully loaded onto the particle device. The Argon connected to the internet as expected. | Pass      |
+| 2    | Design a program that collects readings for the barometer sensor (BME280) ([See 1.1](cycle-1.md#1.1), [1.2](cycle-1.md#1.2)) | Data collected should be displayed in serial monitor/ particle console variables            | Recieved readings for temperature, pressure and humidity                                                      | Pass      |
+| 3    | Implement other sensors into the program ([See 1.2](cycle-1.md#1.2))                                                         | Collect readings for air quality, dust levels, and light.                                   |                                                                                                               |           |
+| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value                                 |                                                                                                               |           |
+
+
+
 ### Challenges
 
 Description of challenges
-
-## Testing
-
-Evidence for testing
-
-### Tests
-
-| Test | Instructions  | What I expect     | What actually happens | Pass/Fail |
-| ---- | ------------- | ----------------- | --------------------- | --------- |
-| 1    | Run code      | Thing happens     | As expected           | Pass      |
-| 2    | Press buttons | Something happens | As expected           | Pass      |
 
 ### Evidence
