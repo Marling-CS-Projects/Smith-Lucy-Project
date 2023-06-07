@@ -141,9 +141,8 @@ Serial.begin(9600);
 
 I then added the following lines of code at the end of loop().
 
-```cpp
-Serial.print("Temperature: ");
-Serial.println(temp);
+<pre class="language-cpp"><code class="lang-cpp"><strong>Serial.print("Temperature: ");
+</strong>Serial.println(temp);
 
 Serial.print("Humidity: ");
 Serial.println(humidity);
@@ -153,7 +152,7 @@ Serial.println(pressure);
 
 Serial.print("Altitude: ");
 Serial.println(altitude);
-```
+</code></pre>
 
 Once again, the program successful displayed the following values, this time on the serial monitor.
 
