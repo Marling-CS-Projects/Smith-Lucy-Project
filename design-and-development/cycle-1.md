@@ -225,6 +225,62 @@ After running the code, I was successfully able to get an output for the air qua
 
 #### Dust Concentration
 
+<pre class="language-cpp"><code class="lang-cpp">// Adds math library for pow()
+#include &#x3C;math.h>
+// Sets dust sensor to a pin and sets the interval between readings
+#define DUST_SENSOR_PIN A2
+#define SENSOR_READING_INTERVAL 30000
+
+//variables used in program
+unsigned long lastInterval;
+unsigned long lowpulseoccupancy = 0;
+unsigned long last_lpo = 0;
+unsigned long duration;
+
+double ratio = 0;
+double concentration = 0;
+
+
+//function of collect sensor readings
+void getDustSensorReadings(){
+  //prevents the value on the dust sensor from being 0
+  if (lowpulseoccupancy == 0){
+    lowpulseoccupancy = last_lpo;
+  }
+  else{
+    last_lpo = lowpulseoccupancy;
+  }
+  
+  //Calculates the concentration of dust
+  ratio = lowpulseoccupancy / (SENSOR_READING_INTERVAL * 10.0);
+  concentration = 1.1 * pow(ratio, 3) - 3.8 * pow(ratio, 2) + 520 * ratio + 0.62;
+}
+
+void setup() {
+  
+  pinMode(DUST_SENSOR_PIN, INPUT);
+  lastInterval = millis();
+  
+  //Uploads sensor values to particle cloud
+<strong>  Particle.variable("lpo", lowpulseoccupancy);
+</strong>  Particle.variable("ratio", ratio);
+  Particle.variable("conc", concentration);
+}
+
+void loop() {
+  duration = pulseIn(DUST_SENSOR_PIN, LOW);
+  lowpulseoccupancy = lowpulseoccupancy + duration;
+  
+  //Collects sensor readings at pre-set intervals
+  if ((millis() - lastInterval) > SENSOR_READING_INTERVAL){
+    getDustSensorReadings(); //Calls dust sensor reading function
+
+    lowpulseoccupancy = 0;
+    lastInterval = millis();
+  }
+}
+</code></pre>
+
 #### Light
 
 #### Sound
