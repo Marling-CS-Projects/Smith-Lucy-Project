@@ -9,7 +9,8 @@ I aim to learn how the Particle Argon communicates with and takes readings from 
 ### Objectives
 
 * [x] Set up basic project with Particle Argon
-* [ ] Design a program that communicates with sensors using C++
+* [x] Design a program that communicates with sensors using C++
+* [ ] Design weather station that can upload readings to particle cloud
 
 ### Usability Features
 
@@ -174,11 +175,11 @@ void getBarometerReadings() {
 }
 ```
 
-&#x20;After checking that the program for the Barometer Sensor still passed, I moved on to programming the other components.
+After checking that the program for the Barometer Sensor still passed, I moved on to programming the other components.
 
 #### Air Quality
 
-The code for the air quality monitoring can be seen below.&#x20;
+The next sensor I programmed was the air quality sensor, which takes a reading from the environment and assigns the current air quality to either 'Fresh Air',  'Low Polution', 'High Polution', or 'Dangerous Level'. The code for the air quality monitoring can be seen below.&#x20;
 
 ```cpp
 //Library for air quality sensor
@@ -232,7 +233,7 @@ After running the code, I was successfully able to get an output for the air qua
 #define SENSOR_READING_INTERVAL 30000
 
 //variables used in program
-unsigned long lastInterval;
+unsigned long lastCheck;
 unsigned long lowpulseoccupancy = 0;
 unsigned long last_lpo = 0;
 unsigned long duration;
@@ -259,7 +260,7 @@ void getDustSensorReadings(){
 void setup() {
   
   pinMode(DUST_SENSOR_PIN, INPUT);
-  lastInterval = millis();
+  lastCheck = millis();
   
   //Uploads sensor values to particle cloud
 <strong>  Particle.variable("lpo", lowpulseoccupancy);
@@ -272,18 +273,42 @@ void loop() {
   lowpulseoccupancy = lowpulseoccupancy + duration;
   
   //Collects sensor readings at pre-set intervals
-  if ((millis() - lastInterval) > SENSOR_READING_INTERVAL){
+  if ((millis() - lastCheck) > SENSOR_READING_INTERVAL){
     getDustSensorReadings(); //Calls dust sensor reading function
 
     lowpulseoccupancy = 0;
-    lastInterval = millis();
+    lastCheck = millis();
   }
 }
 </code></pre>
 
+While this program sucessfully compiled and ran on the Argon device, I had some issues when trying to access readings from sensors on the particle cloud. After going through my code, I identified one line of code in particular which was preventing variables from being accessed.
+
+```cpp
+duration = pulseIn(DUST_SENSOR_PIN, LOW);
+```
+
+This line of code measures how long it takes for the sensor to change between digital LOW to high. However, when this line of code runs, the rest of the program stops and waits for the sensor to recive and input or time out. This interrupts the particle console's ability to retrieve values of the variables. To confirm this is the case, I added the following lines of code to output readings in the serial monitor.
+
+```cpp
+Particle.variable("lpo", lowpulseoccupancy);
+Particle.variable("ratio", ratio);
+Particle.variable("conc", concentration);
+```
+
+/Image of serial monitor...
+
+As this was an error with the particle cloud and not the program itself, I ran the same code again and recieved the following outputs. As expected, I recived readings for concentration of dust as well as other sensors. To overcome the issue of uploading to the particle cloud, I instead published data values as events, which can be seen below. This now passed the test.&#x20;
+
+/Image of particle cloud events log...
+
 #### Light
 
+The next stage to programming my weather station is designing a program that can measure light readings.
+
 #### Sound
+
+The final sensor I am adding to my weather station is for sound.
 
 
 
@@ -293,9 +318,22 @@ To ensure that my weather station works correctly, in this section I am going to
 
 ### Outcome
 
+Throughout this cycle, I have successfully managed to design a program that takes several readings from the enrivoment, including:
+
+* Temperature
+* Humidity
+* Pressure
+* Altitude
+* Air quality
+* Dust concentration
+* Light
+* Sound
+
+After testing all the sensors individually, I combinded the programs to produce one program that can take readings from the attached sensors and upload the data values wirelessly to the particle cloud. The final design for the device itself can be seen below.&#x20;
+
 The completed code written that passed this cycle can be seen below.
 
-```
+```cpp
 // Some code
 ```
 
@@ -303,12 +341,12 @@ The completed code written that passed this cycle can be seen below.
 
 The table below outlines a summary of the results from my testing.
 
-| Test | Instructions                                                                                                                 | What I expect                                                                               | What actually happens                                                                                         | Pass/Fail |
-| ---- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | --------- |
-| 1    | Compile and flash code to Argon device ([See 1.1](cycle-1.md#1.1))                                                           | Code should compile and flash without errors. Device should then reconnect to the internet. | The program was sucessfully loaded onto the particle device. The Argon connected to the internet as expected. | Pass      |
-| 2    | Design a program that collects readings for the barometer sensor (BME280) ([See 1.1](cycle-1.md#1.1), [1.2](cycle-1.md#1.2)) | Data collected should be displayed in serial monitor/ particle console variables            | Recieved readings for temperature, pressure and humidity                                                      | Pass      |
-| 3    | Implement other sensors into the program ([See 1.2](cycle-1.md#1.2))                                                         | Collect readings for air quality, dust levels, and light.                                   |                                                                                                               |           |
-| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value                                 |                                                                                                               |           |
+| Test | Instructions                                                                                                                 | What I expect                                                                               | What actually happens                                                                                                   | Pass/Fail |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------- |
+| 1    | Compile and flash code to Argon device ([See 1.1](cycle-1.md#1.1))                                                           | Code should compile and flash without errors. Device should then reconnect to the internet. | The program was sucessfully loaded onto the particle device. The Argon connected to the internet as expected.           | Pass      |
+| 2    | Design a program that collects readings for the barometer sensor (BME280) ([See 1.1](cycle-1.md#1.1), [1.2](cycle-1.md#1.2)) | Data collected should be displayed in serial monitor/ particle console variables.           | Recieved readings for temperature, pressure and humidity.                                                               | Pass      |
+| 3    | Implement other sensors into the program ([See 1.2](cycle-1.md#1.2))                                                         | Collect readings for air quality, dust levels, light and sound.                             | After having a slight issue with the dust sensor, I managed to sucessfully publish readings to the particle events log. | Pass      |
+| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value.                                |                                                                                                                         |           |
 
 
 
