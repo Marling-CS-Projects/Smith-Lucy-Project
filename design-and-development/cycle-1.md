@@ -65,6 +65,7 @@ print altitude
 print airQuality
 print concentration
 print lightVal
+print soundVal
     
 end procedure
 ```
@@ -73,12 +74,21 @@ end procedure
 
 ## Data structures
 
-| Structure Name | Structure types  | Description                                                                                               |
-| -------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
-| temp           | Integer Variable | Stores the temperature value that is output by the sensor (in degrees celcius)                            |
-| humidity       | Integer Variable | Stores the humidity value that is output by the sensor (as a percentage)                                  |
-| pressure       | Integer Variable | Stores the atmospheric pressure value that is output by the sensor (in Pascals)                           |
-| altitude       | Integer Variable | Stores the approximate altitude based on the value output for pressure and sea level pressure (1013.25Pa) |
+| Structure Name    | Structure types   | Description                                                                                               |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------- |
+| temp              | Integer Variable  | Stores the temperature value that is output by the sensor (in degrees celcius)                            |
+| humidity          | Integer Variable  | Stores the humidity value that is output by the sensor (as a percentage)                                  |
+| pressure          | Integer Variable  | Stores the atmospheric pressure value that is output by the sensor (in Pascals)                           |
+| altitude          | Integer Variable  | Stores the approximate altitude based on the value output for pressure and sea level pressure (1013.25Pa) |
+| airQuality        | String Variable   | Stores current air quality as either "Fresh Air", "Low Polution", "High Polution" or "Dangerous Level"    |
+| airQualityVal     | Integer Variable  | Stores the actual reading from the air quality sensor                                                     |
+| lastCheck         | Unsigned Long     | Stores a value in miliseconds for when the dust sensor was last checked                                   |
+| lowpulseoccupancy | Unsigned Long     | Stores a running total of the duration readings from the dust sensor                                      |
+| duration          | Unsigned Long     | Stores how long it takes for the sensor to change between digital LOW to HIGH in microseconds             |
+| ratio             | Double Variable   | Stores the percentage of dust filled air that the sensor detects                                          |
+| concentration     | Double Variable   | Stores the concentration of dust in the air                                                               |
+| lightVal          | Integer Variable  | Stores the light reading from the light sensor                                                            |
+| soundVal          | Integer Variable  | Stores the sound reading from the sound sensor                                                            |
 
 ## Development
 
@@ -288,7 +298,7 @@ While this program sucessfully compiled and ran on the Argon device, I had some 
 duration = pulseIn(DUST_SENSOR_PIN, LOW);
 ```
 
-This line of code measures how long it takes for the sensor to change between digital LOW to high. However, when this line of code runs, the rest of the program stops and waits for the sensor to recive and input or time out. This interrupts the particle console's ability to retrieve values of the variables. To confirm this is the case, I added the following lines of code to output readings in the serial monitor.
+This line of code measures how long it takes for the sensor to change between digital LOW to HIGH. However, when this line of code runs, the rest of the program stops and waits for the sensor to recive and input or time out. This interrupts the particle console's ability to retrieve values of the variables. To confirm this is the case, I added the following lines of code to output readings in the serial monitor.
 
 ```cpp
 Particle.variable("lpo", lowpulseoccupancy);
@@ -296,25 +306,117 @@ Particle.variable("ratio", ratio);
 Particle.variable("conc", concentration);
 ```
 
-/Image of serial monitor...
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-09 at 18.04.35.png" alt=""><figcaption></figcaption></figure>
 
 As this was an error with the particle cloud and not the program itself, I ran the same code again and recieved the following outputs. As expected, I recived readings for concentration of dust as well as other sensors. To overcome the issue of uploading to the particle cloud, I instead published data values as events, which can be seen below. This now passed the test.&#x20;
 
-/Image of particle cloud events log...
+```cpp
+#include "JsonParserGeneratorRK.h"
+
+void loop() {
+  //Build JSON object to publish to cloud
+  JsonWriterStatic<256> jw;
+
+  {
+    JsonWriterAutoObject obj(&jw);
+
+    // Add various types of data
+    jw.insertKeyValue("temp", temp);
+    jw.insertKeyValue("humidity", humidity);
+    jw.insertKeyValue("pressure", pressure);
+    jw.insertKeyValue("altitude", altitude);
+    jw.insertKeyValue("airQual", airQuality);
+    jw.insertKeyValue("lpo_val", lowpulseoccupancy);
+    jw.insertKeyValue("dust_ratio", ratio);
+    jw.insertKeyValue("dust_conc", concentration);
+
+  }
+  Particle.publish("weatherStationData", jw.getBuffer(), PRIVATE);
+}
+```
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-09 at 18.37.12.png" alt=""><figcaption></figcaption></figure>
 
 #### Light
 
 The next stage to programming my weather station is designing a program that can measure light readings.
 
+<pre class="language-cpp"><code class="lang-cpp">// Set light pin to A0
+int lightPin = A0;
+
+// Initilise lightVal variable
+int lightVal = 0;
+
+void getLightReadings() {
+  //collects light reading from sensors
+  lightVal = analogRead(lightPin);
+}
+
+void setup() {
+  //Setup serial monitor
+<strong>  Serial.begin(9600);
+</strong><strong>  
+</strong>  //Setup light sensor
+  pinMode(lightPin, INPUT);
+}
+
+void loop() {
+  //call function to get light readings
+  getLightReadings();
+  
+  //Print light values in serial monitor
+  Serial.print("Light: ");
+  Serial.println(lightVal);
+}
+</code></pre>
+
+After checking that I was recieving readings, I compared sensor readings in dark and light conditons to ensure the sensor was working correctly.
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-09 at 19.22.27.png" alt=""><figcaption></figcaption></figure>
+
 #### Sound
 
-The final sensor I am adding to my weather station is for sound.
+In the next stage of this cycle, I added the following code to the program to take readings of sound from the environment.
 
+```cpp
+// SOUND SENSOR
 
+//Sets sound pin to A4
+int soundPin = A4;
+
+//Initilise soundVal variable
+int soundVal;
+
+void getSoundReadings() {
+  // Collects sound readings from sensor
+  soundVal = analogRead(soundPin);
+}
+
+void setup() {
+  //Setup serial monitor
+  Serial.begin(9600);
+  
+  // Setup sound sensor
+  pinMode(soundPin, INPUT);
+}
+
+void loop() {
+  // Calls sound reading function
+  getSoundReadings();
+  
+  //Print light values in serial monitor
+  Serial.print("Sound: ");
+  Serial.println(soundVal);
+}
+```
+
+After running this code, I recieved a value for sound in the serial monitor. I then compared sensor readings in loud and quite areas to ensure the sensor was working correctly. These outputs can be seen below.
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-10 at 15.19.06.png" alt=""><figcaption></figcaption></figure>
 
 ### 1.3
 
-To ensure that my weather station works correctly, in this section I am going to check the accuracy of the sensor readings I have collected.
+In this section I am going to check the accuracy of the sensor readings I have collected...
 
 ### Outcome
 
@@ -329,12 +431,197 @@ Throughout this cycle, I have successfully managed to design a program that take
 * Light
 * Sound
 
-After testing all the sensors individually, I combinded the programs to produce one program that can take readings from the attached sensors and upload the data values wirelessly to the particle cloud. The final design for the device itself can be seen below.&#x20;
+After testing all the sensors individually, I combinded the programs to produce one program that can take readings from the attached sensors and upload the data values wirelessly to the particle cloud.&#x20;
+
+In terms of hardware, the layout of my weather station can be seen below.&#x20;
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-10 at 16.05.55.png" alt=""><figcaption><p>Personal Weather Station Design at the end of cycle 1</p></figcaption></figure>
 
 The completed code written that passed this cycle can be seen below.
 
 ```cpp
-// Some code
+#include "Particle.h"
+#include "Adafruit_BME280.h"
+#include "JsonParserGeneratorRK.h"
+
+
+Adafruit_BME280 bme;
+
+//initialising variables for BME280 sensor
+int temp = 0;
+int humidity = 0;
+int pressure = 0;
+int altitude = 0;
+
+
+// BAROMETER SENSOR CODE
+
+void getBarometerReadings() {
+  //Collects readings from sensors
+  temp = (int)bme.readTemperature();
+  humidity = (int)bme.readHumidity();
+  pressure = (int)bme.readPressure();
+  altitude = (int)bme.readAltitude(1013.25);
+}
+
+
+// AIR QUALITY SENSOR CODE
+
+//Library for air quality sensor
+#include "Air_Quality_Sensor.h"
+
+//Pin for air quality sensor
+#define AQS_PIN D2
+AirQualitySensor aqSensor(AQS_PIN);
+
+//Initiates variable airQuality
+String airQuality = "Loading";
+
+//Function that collects readings from AQ sensor
+
+void getAirQualityReadings(){
+
+  //Gets sensor reading
+  int airQualityVal = aqSensor.slope();
+
+  //Assigns air quality
+  if (airQualityVal == AirQualitySensor:: FORCE_SIGNAL) {
+    airQuality = "Dangerous Level";
+  }
+  else if (airQualityVal == AirQualitySensor:: HIGH_POLLUTION) {
+    airQuality = "High Polution";
+  }
+  else if (airQualityVal == AirQualitySensor:: LOW_POLLUTION) {
+    airQuality = "Low Polution";
+  }
+  else if (airQualityVal == AirQualitySensor:: FRESH_AIR) {
+    airQuality = "Fresh Air";
+  }
+  else {
+    airQuality = "Reading Unsuccessful";
+  }
+
+}
+
+// DUST SENSOR
+
+#include <math.h>
+#define DUST_SENSOR_PIN A2
+#define SENSOR_READING_INTERVAL 30000
+
+
+unsigned long lastCheck;
+unsigned long lowpulseoccupancy = 0;
+unsigned long last_lpo = 0;
+unsigned long duration;
+
+double ratio = 0;
+double concentration = 0;
+
+
+
+void getDustSensorReadings(){
+  if (lowpulseoccupancy == 0){
+    lowpulseoccupancy = last_lpo;
+  }
+  else{
+    last_lpo = lowpulseoccupancy;
+  }
+
+  ratio = lowpulseoccupancy / (SENSOR_READING_INTERVAL * 10.0);
+  concentration = 1.1 * pow(ratio, 3) - 3.8 * pow(ratio, 2) + 520 * ratio + 0.62;
+
+}
+
+
+// LIGHT SENSOR
+int lightPin = A0;
+int lightVal = 0;
+void getLightReadings() {
+
+  lightVal = analogRead(lightPin);
+
+}
+
+// SOUND SENSOR
+int soundPin = A4;
+int soundVal;
+
+void getSoundReadings() {
+  soundVal = analogRead(soundPin);
+}
+
+
+void setup() {
+
+  Particle.publish("Weather Station Online :)");
+
+  //Setup barometer sensor
+  bme.begin();
+
+  //Setup serial monitor
+  Serial.begin(9600);
+  
+  //Setup dust sensor
+  pinMode(DUST_SENSOR_PIN, INPUT);
+  lastCheck = millis();
+
+  //Setup light sensor
+  pinMode(lightPin, INPUT);
+
+  //Setup sound sensor
+  pinMode(soundPin, INPUT);
+
+  
+}
+
+
+void loop() {
+
+  getBarometerReadings();
+  getAirQualityReadings();
+  getLightReadings();
+  getSoundReadings();
+  
+
+
+  duration = pulseIn(DUST_SENSOR_PIN, LOW);
+  
+  lowpulseoccupancy = lowpulseoccupancy + duration;
+
+  if ((millis() - lastCheck) > SENSOR_READING_INTERVAL)
+  {
+    getDustSensorReadings();
+
+    lowpulseoccupancy = 0;
+    lastCheck = millis();
+  }
+  Serial.print("Sound: ");
+  Serial.println(soundVal);
+  Serial.print("Light: ");
+  Serial.println(lightVal);
+
+  //Build JSON object to publish to cloud
+  JsonWriterStatic<256> jw;
+
+  {
+    JsonWriterAutoObject obj(&jw);
+
+    // Add various types of data
+    jw.insertKeyValue("temp", temp);
+    jw.insertKeyValue("humidity", humidity);
+    jw.insertKeyValue("pressure", pressure);
+    jw.insertKeyValue("altitude", altitude);
+    jw.insertKeyValue("airQual", airQuality);
+    jw.insertKeyValue("lpo_val", lowpulseoccupancy);
+    jw.insertKeyValue("dust_ratio", ratio);
+    jw.insertKeyValue("dust_conc", concentration);
+    jw.insertKeyValue("light", lightVal);
+    jw.insertKeyValue("sound", soundVal);
+
+  }
+  Particle.publish("weatherStationData", jw.getBuffer(), PRIVATE);
+}
 ```
 
 ### Testing
@@ -346,7 +633,7 @@ The table below outlines a summary of the results from my testing.
 | 1    | Compile and flash code to Argon device ([See 1.1](cycle-1.md#1.1))                                                           | Code should compile and flash without errors. Device should then reconnect to the internet. | The program was sucessfully loaded onto the particle device. The Argon connected to the internet as expected.           | Pass      |
 | 2    | Design a program that collects readings for the barometer sensor (BME280) ([See 1.1](cycle-1.md#1.1), [1.2](cycle-1.md#1.2)) | Data collected should be displayed in serial monitor/ particle console variables.           | Recieved readings for temperature, pressure and humidity.                                                               | Pass      |
 | 3    | Implement other sensors into the program ([See 1.2](cycle-1.md#1.2))                                                         | Collect readings for air quality, dust levels, light and sound.                             | After having a slight issue with the dust sensor, I managed to sucessfully publish readings to the particle events log. | Pass      |
-| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value.                                |                                                                                                                         |           |
+| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value.                                | (not done yet)                                                                                                          |           |
 
 
 
