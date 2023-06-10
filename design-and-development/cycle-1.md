@@ -10,7 +10,7 @@ I aim to learn how the Particle Argon communicates with and takes readings from 
 
 * [x] Set up basic project with Particle Argon
 * [x] Design a program that communicates with sensors using C++
-* [ ] Design weather station that can upload readings to particle cloud
+* [x] Design weather station that can upload readings to particle cloud
 
 ### Usability Features
 
@@ -236,7 +236,7 @@ After running the code, I was successfully able to get an output for the air qua
 
 #### Dust Concentration
 
-<pre class="language-cpp"><code class="lang-cpp">// Adds math library for pow()
+<pre class="language-cpp" data-full-width="false"><code class="lang-cpp">// Adds math library for pow()
 #include &#x3C;math.h>
 // Sets dust sensor to a pin and sets the interval between readings
 #define DUST_SENSOR_PIN A2
@@ -441,10 +441,10 @@ The completed code written that passed this cycle can be seen below.
 
 ```cpp
 #include "Particle.h"
-#include "Adafruit_BME280.h"
 #include "JsonParserGeneratorRK.h"
 
-
+// BAROMETER SENSOR CODE
+#include "Adafruit_BME280.h"
 Adafruit_BME280 bme;
 
 //initialising variables for BME280 sensor
@@ -453,8 +453,6 @@ int humidity = 0;
 int pressure = 0;
 int altitude = 0;
 
-
-// BAROMETER SENSOR CODE
 
 void getBarometerReadings() {
   //Collects readings from sensors
