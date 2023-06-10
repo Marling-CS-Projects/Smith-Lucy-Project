@@ -6,7 +6,7 @@ description: Computer Science H446-03
 
 |                  |                |
 | ---------------- | -------------- |
-| Candidate Name   | Lucy SMITH     |
+| Candidate Name   | Lucy Smith     |
 | Candidate Number | 2298           |
 | Centre Name      | Marling School |
 | Centre Number    | 57037          |
