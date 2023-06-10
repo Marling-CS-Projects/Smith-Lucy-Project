@@ -596,10 +596,6 @@ void loop() {
     lowpulseoccupancy = 0;
     lastCheck = millis();
   }
-  Serial.print("Sound: ");
-  Serial.println(soundVal);
-  Serial.print("Light: ");
-  Serial.println(lightVal);
 
   //Build JSON object to publish to cloud
   JsonWriterStatic<256> jw;
