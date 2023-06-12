@@ -416,7 +416,17 @@ After running this code, I recieved a value for sound in the serial monitor. I t
 
 ### 1.3
 
-In this section I am going to check the accuracy of the sensor readings I have collected...
+In this section I am going to check the accuracy of readings from the sensors, and ensure that my program works correctly. I am going to test that the values for sound, light, temperature, humidity, pressure, altitude, air quality and dust concentration to ensure they are correct and accurate. For this test, I kept my program on the argon the same and viewed the sensor readings in the serial monitor.
+
+To test that the sound, altitude and light sensors were working correctly, I compared their readings in different environments.
+
+/image showing light sensor readings with light on/off
+
+/image showing sound readings in loud environment vs quite environment
+
+/image showing differences in altitude in different locations
+
+In the next part of my testing for sensor values, I compared temperature, humidity and pressure readings with manually recorded values...
 
 ### Outcome
 
@@ -633,6 +643,8 @@ The table below outlines a summary of the results from my testing.
 
 ### Challenges
 
-Description of challenges
+In this cycle I was successfully able to design a program that is able to take readings from the surrounding environment. One of the main challenges I faced was ensuring that the code in C++ was syntatically correct before compiling and flashing it to the particle device. I initially had some trouble when incoperating the dust levels sensor into my program, as waiting to recieve readings from sensors interrupted the connection with the particle cloud. However, I was able to resolve this issue by outputting data into the particle events console in the JSON parse format.
+
+Another issue that I have had with this cycle is connecting the particle device to the Wi-Fi, esspecially when working in different locations. As the other aspects of my project are dependent on this system is working correctly, I need to ensure I am able to run this program with minimal errors.
 
 ### Evidence
