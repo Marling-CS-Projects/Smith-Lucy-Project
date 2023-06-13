@@ -17,7 +17,7 @@
 
 * [2.1 Design Frame](design-and-development/systems-diagram.md)
 * [2.2.1 Cycle 1: Data Collection](design-and-development/cycle-1.md)
-* [2.2.2 Cycle 2:](design-and-development/2.2.2-cycle-2.md)
+* [2.2.2 Cycle 2: Storing Data](design-and-development/2.2.2-cycle-2-storing-data.md)
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 
