@@ -420,13 +420,19 @@ In this section I am going to check the accuracy of readings from the sensors, a
 
 To test that the sound, altitude and light sensors were working correctly, I compared their readings in different environments.
 
-/image showing light sensor readings with light on/off
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-21 at 14.03.12.png" alt=""><figcaption><p>Passed Test</p></figcaption></figure>
 
-/image showing sound readings in loud environment vs quite environment
+To test for sound, I compared the readings when in constant, quiet conditions, with the changing volumes of music. Readings stayed constant when recording sound in an unchanging environment, while readings rise and fell to different volumes of sound in the music. These readings can be seen below.
 
-/image showing differences in altitude in different locations
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-21 at 14.15.40.png" alt=""><figcaption><p>Passed test</p></figcaption></figure>
 
-In the next part of my testing for sensor values, I compared temperature, humidity and pressure readings with manually recorded values...
+To test for altitude, I compared the readings in different locations. As there was only a small change in altitude, I wasn't expecting a large difference to be detected by the sensors. However, my weather station was able to detect the differences between the two environments, which can be seen below.
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-21 at 14.24.44.png" alt=""><figcaption><p>Passed test</p></figcaption></figure>
+
+In the final part of my accuracy testing, I compared the readings from the barometer temperature sensor with the ones I manually measured.&#x20;
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-21 at 14.47.25.png" alt=""><figcaption><p>Passed Test</p></figcaption></figure>
 
 ### Outcome
 
@@ -632,12 +638,12 @@ void loop() {
 
 The table below outlines a summary of the results from my testing.
 
-| Test | Instructions                                                                                                                 | What I expect                                                                               | What actually happens                                                                                                   | Pass/Fail |
-| ---- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------- |
-| 1    | Compile and flash code to Argon device ([See 1.1](cycle-1.md#1.1))                                                           | Code should compile and flash without errors. Device should then reconnect to the internet. | The program was sucessfully loaded onto the particle device. The Argon connected to the internet as expected.           | Pass      |
-| 2    | Design a program that collects readings for the barometer sensor (BME280) ([See 1.1](cycle-1.md#1.1), [1.2](cycle-1.md#1.2)) | Data collected should be displayed in serial monitor/ particle console variables.           | Recieved readings for temperature, pressure and humidity.                                                               | Pass      |
-| 3    | Implement other sensors into the program ([See 1.2](cycle-1.md#1.2))                                                         | Collect readings for air quality, dust levels, light and sound.                             | After having a slight issue with the dust sensor, I managed to sucessfully publish readings to the particle events log. | Pass      |
-| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value.                                | (not done yet)                                                                                                          |           |
+| Test | Instructions                                                                                                                 | What I expect                                                                               | What actually happens                                                                                                      | Pass/Fail |
+| ---- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------- |
+| 1    | Compile and flash code to Argon device ([See 1.1](cycle-1.md#1.1))                                                           | Code should compile and flash without errors. Device should then reconnect to the internet. | The program was sucessfully loaded onto the particle device. The Argon connected to the internet as expected.              | Pass      |
+| 2    | Design a program that collects readings for the barometer sensor (BME280) ([See 1.1](cycle-1.md#1.1), [1.2](cycle-1.md#1.2)) | Data collected should be displayed in serial monitor/ particle console variables.           | Recieved readings for temperature, pressure and humidity.                                                                  | Pass      |
+| 3    | Implement other sensors into the program ([See 1.2](cycle-1.md#1.2))                                                         | Collect readings for air quality, dust levels, light and sound.                             | After having a slight issue with the dust sensor, I managed to sucessfully publish readings to the particle events log.    | Pass      |
+| 4    | Check that the values measured on sensors are correct ([See 1.3](cycle-1.md#1.3))                                            | Data readings that are close to the manually measured value.                                | When comparing readings in different conditions and using manually measured values, readings had a high degree of accuracy | Pass      |
 
 
 
