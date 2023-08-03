@@ -62,5 +62,3 @@ To ensure that my weather monitoring system isn't to complicated for a stakehold
 * Include a tutorial explaining what the features of the app itself are and how to use them
 * All other processes should take place automatically and therefore not require any user input
 
-## Pseudocode for this project
-

@@ -19,7 +19,7 @@
 * [2.2.1 Cycle 1: Data Collection](design-and-development/cycle-1.md)
 * [2.2.2 Cycle 2: Storing Data](design-and-development/2.2.2-cycle-2-storing-data.md)
 * [2.2.3 Cycle 3: User Interface](design-and-development/2.2.3-cycle-3-user-interface.md)
-* [2.2.4 Cycle 4: Monitoring Weather Conditions](design-and-development/2.2.4-cycle-4-monitoring-weather-conditions.md)
+* [2.2.4 Cycle 4: Displaying and Monitoring Weather Conditions](design-and-development/2.2.4-cycle-4-displaying-and-monitoring-weather-conditions.md)
 * [2.2.6 Cycle 5: Predictions](design-and-development/2.2.6-cycle-5-predictions.md)
 * [2.2.7 Cycle 6: Displaying Weather Predictions](design-and-development/2.2.7-cycle-6-displaying-weather-predictions.md)
 
