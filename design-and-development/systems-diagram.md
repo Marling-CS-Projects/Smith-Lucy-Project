@@ -26,7 +26,7 @@ As well as the weather station communicating with the app, communication between
 
 Making my project efficient involves making the weather station easy to set up and use so that the stakeholder can quickly monitor their outdoor environment. The app must be easy to navigate and connect to the weather station, and then be updated automatically with accurate weather information. To simplify the setting up process, the user should only have to follow basic instructions before setting up the device. Once this is done, they should quickly start recieving usable weather data from the app.
 
-All previous measurements must be recorded so that trends tracked by the user. This will also allow the device to detect sudden changes in weather conditions and send notifications to the user. Another important feature of my solution is therefore how data is stored. Previous weather information should be recorded on a online database, so that it can be quickly and efficiently accessed by a user upon request.
+All previous measurements must be recorded so that trends tracked by the user. This will also allow the device to detect sudden changes in weather conditions. Another important feature of my solution is therefore how data is stored. Previous weather information should be recorded on a online database, so that it can be quickly and efficiently accessed by a user upon request.
 
 #### Aims
 
