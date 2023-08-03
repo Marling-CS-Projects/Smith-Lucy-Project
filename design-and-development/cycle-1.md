@@ -74,7 +74,7 @@ end procedure
 
 ## Data structures
 
-| Structure Name    | Structure types   | Description                                                                                               |
+| Structure Name    | Structure Type    | Description                                                                                               |
 | ----------------- | ----------------- | --------------------------------------------------------------------------------------------------------- |
 | temp              | Integer Variable  | Stores the temperature value that is output by the sensor (in degrees celcius)                            |
 | humidity          | Integer Variable  | Stores the humidity value that is output by the sensor (as a percentage)                                  |
