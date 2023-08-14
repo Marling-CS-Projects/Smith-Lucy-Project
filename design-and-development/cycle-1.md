@@ -80,7 +80,7 @@ end procedure
 | humidity          | Integer Variable  | Stores the humidity value that is output by the sensor (as a percentage)                                  |
 | pressure          | Integer Variable  | Stores the atmospheric pressure value that is output by the sensor (in Pascals)                           |
 | altitude          | Integer Variable  | Stores the approximate altitude based on the value output for pressure and sea level pressure (1013.25Pa) |
-| airQuality        | String Variable   | Stores current air quality as either "Fresh Air", "Low Polution", "High Polution" or "Dangerous Level"    |
+| airQuality        | String Variable   | Stores current air quality as either "Fresh Air", "Low Pollution", "High Pollution" or "Dangerous Level"  |
 | airQualityVal     | Integer Variable  | Stores the actual reading from the air quality sensor                                                     |
 | lastCheck         | Unsigned Long     | Stores a value in miliseconds for when the dust sensor was last checked                                   |
 | lowpulseoccupancy | Unsigned Long     | Stores a running total of the duration readings from the dust sensor                                      |
@@ -189,7 +189,7 @@ After checking that the program for the Barometer Sensor still passed, I moved o
 
 #### Air Quality
 
-The next sensor I programmed was the air quality sensor, which takes a reading from the environment and assigns the current air quality to either 'Fresh Air',  'Low Polution', 'High Polution', or 'Dangerous Level'. The code for the air quality monitoring can be seen below.&#x20;
+The next sensor I programmed was the air quality sensor, which takes a reading from the environment and assigns the current air quality to either 'Fresh Air',  'Low Pollution', 'High Pollution', or 'Dangerous Level'. The code for the air quality monitoring can be seen below.&#x20;
 
 ```cpp
 //Library for air quality sensor
@@ -214,10 +214,10 @@ void getAirQualityReadings(){
     airQuality = "Dangerous Level";
   }
   else if (airQualityVal == AirQualitySensor:: HIGH_POLLUTION) {
-    airQuality = "High Polution";
+    airQuality = "High Pollution";
   }
   else if (airQualityVal == AirQualitySensor:: LOW_POLLUTION) {
-    airQuality = "Low Polution";
+    airQuality = "Low Pollution";
   }
   else if (airQualityVal == AirQualitySensor:: FRESH_AIR) {
     airQuality = "Fresh Air";
@@ -503,10 +503,10 @@ void getAirQualityReadings(){
     airQuality = "Dangerous Level";
   }
   else if (airQualityVal == AirQualitySensor:: HIGH_POLLUTION) {
-    airQuality = "High Polution";
+    airQuality = "High Pollution";
   }
   else if (airQualityVal == AirQualitySensor:: LOW_POLLUTION) {
-    airQuality = "Low Polution";
+    airQuality = "Low Pollution";
   }
   else if (airQualityVal == AirQualitySensor:: FRESH_AIR) {
     airQuality = "Fresh Air";
