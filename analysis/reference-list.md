@@ -64,6 +64,8 @@ Tonkova, E. (2017). Specific Applications of Weather-Based Marketing. Journal of
 
 Turner, A. (2023). How Many Smartphones Are in the World? \[online] BankMyCell. Available at: [https://www.bankmycell.com/blog/how-many-phones-are-in-the-world](https://www.bankmycell.com/blog/how-many-phones-are-in-the-world) \[Accessed 28 Mar. 2023].
 
+upGrad.com (2023). _How to Install React on Windows? The Complete Guide_. \[online] Available at: [https://www.upgrad.com/blog/how-to-install-react-on-windows/ ](https://www.upgrad.com/blog/how-to-install-react-on-windows/)\[Accessed 11 Sep. 2023].
+
 Visual Crossing (2023). What is a Weather API? – Visual Crossing Weather. \[online] Visual Crossing Weather. Available at: [https://www.visualcrossing.com/resources/documentation/weather-api/what-is-a-weather-api/#:\~:text=If%20you%20are%20planning%20the](https://www.visualcrossing.com/resources/documentation/weather-api/what-is-a-weather-api/) \[Accessed 11 Apr. 2023].
 
 Visual Studio Code (2023). Requirements for Visual Studio Code. \[online] code.visualstudio.com. Available at: [https://code.visualstudio.com/docs/supporting/requirements](https://code.visualstudio.com/docs/supporting/requirements) \[Accessed 16 May 2023].
