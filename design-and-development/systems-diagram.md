@@ -2,7 +2,7 @@
 
 ## Systems Diagram
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-05-23 at 09.38.55 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-11 at 09.55.50.png" alt=""><figcaption></figcaption></figure>
 
 This diagram shows the different parts of the weather monitoring and prediction system that I will be focusing on. I have split each section into smaller sub-sections, using [computional methods ](../analysis/1.4b-computational-methods.md)such as decomposition. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece the personal weather station together. Blue sections represent features that I must include for my solution to be functional, while the purple section includes features that a stakeholder may want to include but are not essential to completing the project. Each of these components corresponds roughly to the [sucess criteria](../analysis/1.5-success-criteria.md).
 
