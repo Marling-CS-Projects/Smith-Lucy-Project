@@ -24,8 +24,7 @@
 
 ## 3 Testing <a href="#testing" id="testing"></a>
 
-* [3.1 Testing for Function and Robustness](testing/3.1-robustness/README.md)
-  * [4.3 Maintenance and Future Development](testing/3.1-robustness/4.3-maintenance-and-future-development.md)
+* [3.1 Testing for Function and Robustness](testing/3.1-robustness.md)
 * [3.2 Usability Testing](testing/3.2-usability-testing.md)
 * [3.3 Checking Development Tests](testing/3.3-checking-development-tests.md)
 
@@ -33,4 +32,5 @@
 
 * [4.1 Evaluation of Success Criteria](evaluation/4.1-evaluation-of-success-criteria.md)
 * [4.2 Evaluation of Usability Features](evaluation/4.2-evaluation-of-usability-features.md)
+* [4.3 Maintenance and Future Development](evaluation/4.3-maintenance-and-future-development.md)
 * [Reference List](evaluation/reference-list.md)
