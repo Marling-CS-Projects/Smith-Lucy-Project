@@ -2,7 +2,7 @@
 
 ## Criteria To Assess
 
-Throughout [1.5 Success Criteria](../analysis/1.5-success-criteria.md), I have outlined several points relating to function and robustness. In this section, I will test these success criteria on my solution.
+Throughout [1.5 Success Criteria](../../analysis/1.5-success-criteria.md), I have outlined several points relating to function and robustness. In this section, I will test these success criteria on my solution.
 
 | Criterion | Description                                                                                  |
 | --------- | -------------------------------------------------------------------------------------------- |
@@ -27,19 +27,19 @@ There are two main tests that I will conduct to check the function and robustnes
 
 To test for the device's ability to run without error, I activated the weather station and allowed it to collect data in a variety of locations and conditions. I then monitored the events published on the particle cloud to check for the frequency of errors on the device. Examples of the data collected can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 11.25.29.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 11.25.29.png" alt="" width="563"><figcaption></figcaption></figure>
 
 The device was successfully able to receive weather data in a variety of locations, as demonstrated by the particle console. No sensor readings were unsuccessful, and the readings were taken at regular intervals. No errors were reported. The program memory usage is also relatively low, at 33% capacity (54KB), preventing and minimising firmware errors. Further details on testing in different locations and conditions can be found in Criterion 5.
 
 The next step is to test the strength of the weather station's connection to the network. To do this, I need to check how the device responds when it loses connection to the internet. This testing is vital to ensure the weather system is able to cope with any connection errors that are likely to occur when in use, such as changes in signal strength or disconnecting from Wifi. While letting the data collection program run, I monitored the events console for any network issues. This can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 12.21.32.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 12.21.32.png" alt="" width="563"><figcaption></figcaption></figure>
 
-I found that overall, the device was able to maintain its connection to the cloud and continue collecting data the majority of the time. However, when the device did disconnect, the device was able to recover quickly and reconnect without requiring any input from the user. Further details on user interface testing relating to network connection can be found in the [Criterion 6 Testing](3.1-robustness.md#criterion-6-app-functionality-and-robustness) section.
+I found that overall, the device was able to maintain its connection to the cloud and continue collecting data the majority of the time. However, when the device did disconnect, the device was able to recover quickly and reconnect without requiring any input from the user. Further details on user interface testing relating to network connection can be found in the [Criterion 6 Testing](./#criterion-6-app-functionality-and-robustness) section.
 
 Additionally, I then monitored the signal strength, which represents the strength of the device's connection to Wifi, using the particle vitals console.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-15 at 10.36.24.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-15 at 10.36.24.png" alt=""><figcaption></figcaption></figure>
 
 As can be seen on the graph above, the strength of the internet connection varied between 22% and 70%. On average the device had a signal strength of approximately 50%. The device was able to collect weather data and record it on the particle cloud throughout the 30 day period, demonstrating that the device is both robust and functional under stress.&#x20;
 
@@ -47,7 +47,7 @@ As can be seen on the graph above, the strength of the internet connection varie
 
 In this test, I aim to record how regularly the weather station takes measurements from the environment. This is a vital component to my solution as it ensures all data is accurate and up to date. Originally, I aimed to take weather readings approximately every hour. To test whether this is the case, I monitored the data history on the user interface and the events on the particle console over a 5 hour period to see how regularly readings were taken.&#x20;
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 13.30.21.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 13.30.21.png" alt="" width="563"><figcaption></figcaption></figure>
 
 As can be seen from the user interface above, readings were taken at least once an hour. This test has now passed.
 
@@ -70,11 +70,11 @@ I aim to complete to tests to check the weather data is uploaded to the database
 
 It is vital that weather data is not lost during this process as it would reduce the accuracy of the user interface. To ensure all readings were successfully published to the MQTT broker, I subscribed to the weather/station/data topic, as seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 13.36.53.png" alt="" width="556"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 13.36.53.png" alt="" width="556"><figcaption></figcaption></figure>
 
 To test the connection of the python server with the MQTT broker, I allowed the server to run as the weather station collected data.  The readings received can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 13.34.08.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 13.34.08.png" alt=""><figcaption></figcaption></figure>
 
 I found that I received all the data readings almost immediately after it was received by the server, showing the system worked correctly and efficiently.
 
@@ -82,7 +82,7 @@ I found that I received all the data readings almost immediately after it was re
 
 The final aspect I need to test is storing weather data on mongo database, where it can be accessed by the back-end of my user interface. As can be seen from the image below, the most recent readings received by the python server were correctly stored on the database. This test has now passed.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 13.40.47.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 13.40.47.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Criterion 4 - Weather Predictions
 
@@ -100,11 +100,11 @@ There are three areas relating to this success criteria that will test my soluti
 
 This first test will check that the weather prediction software runs correctly and without error.  To test this feature, I ran the weather predictions program on a variety of days and conditions, to see how the system responded. The predictions algorithm produced 14-day predictions for minimum temperature, maximum temperature, and precipitation, which can be seen below.&#x20;
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 12.40.22.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 12.40.22.png" alt="" width="563"><figcaption></figcaption></figure>
 
 The weather forecast was then displayed in a clear, table format, without causing any errors.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 12.43.09.png" alt="" width="358"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 12.43.09.png" alt="" width="358"><figcaption></figcaption></figure>
 
 #### Dealing with prediction errors
 
@@ -112,7 +112,7 @@ In order for my solution to be robust, my user interface needs to be able to dea
 
 To test this, I removed the weather predictions program from the back-end to see how the react app would respond. This resulted in the weather forecast not displaying any predictions, as can be seen below. As expected, the system was robust enough to not produce any errors on the app, and continue to function without the forecasting data. A notification explaining the issue was displayed on the user interface, as shown below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 22.49.31.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 22.49.31.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Criterion 5 - Indoor and outdoor environments
 
@@ -133,9 +133,9 @@ Firstly, I tested the signal strength and reading accuracy while keeping the wea
 
 In order for my weather station to be robust enough to endure harsh outdoor environments, I made a 3D-printed protective case to shield electrical components from the environment. The case contains horizontal slits to allow air and light to pass into the case, but prevents exposure to wind and water. This protective case can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 13.22.55.png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 13.22.55.png" alt="" width="188"><figcaption></figcaption></figure>
 
-I found that while the weather station was outside, the Wifi signal was fair, signal strength averaging around 44%. Data samples were taken less frequently (likely due to the weaker Wifi signal and increased frequency of [disconnections](3.1-robustness.md#checking-for-errors-and-network-errors)), but still managed to take at least one reading every hour. I found that the readings matched closely to manual measured values.
+I found that while the weather station was outside, the Wifi signal was fair, signal strength averaging around 44%. Data samples were taken less frequently (likely due to the weaker Wifi signal and increased frequency of [disconnections](./#checking-for-errors-and-network-errors)), but still managed to take at least one reading every hour. I found that the readings matched closely to manual measured values.
 
 #### Dealing with extreme environments
 
@@ -143,29 +143,29 @@ The next test will test how the system is able to cope in more extreme environme
 
 I firstly tested the weather station's ability to cope under pressure by taking weather readings during a heatwave. I tested the system on high temperatures ranging from 20-35 degrees. A sample of the data collected can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 12.32.17.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 12.32.17.png" alt=""><figcaption></figcaption></figure>
 
 I found that other readings including humidity, pressure, altitude, light and sound remained fairly consistent, suggesting the sensors weren't influenced by the extreme conditions, and a high accuracy was maintained. Examples can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 13.16.00.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 13.16.00.png" alt=""><figcaption></figcaption></figure>
 
 Next, I moved the weather station to a cold, humid, harsh environment. The temperatures in the environment tested ranged from 4-19 degrees, and humidity averaged around 80 degrees. The area was loud, and light varied from extremely bright to completely dark.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 18.48.54.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 18.48.54.png" alt=""><figcaption></figcaption></figure>
 
 Overall, readings for humidity, temperature, pressure and sound remained fairly consistent. The temperature and dust concentration graphs produced by the user interface can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 19.10.46.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 19.10.46.png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 19.11.37.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 19.11.37.png" alt="" width="375"><figcaption></figcaption></figure>
 
 Overall, as expected, the weather station recorded a high humidity in these conditions, averaging around 72%. As can be seen below, only one reading varied greatly (19%), and other readings were consistent.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 19.11.26.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 19.11.26.png" alt="" width="375"><figcaption></figcaption></figure>
 
 During this section, I also tested the light and sound sensors. Compared to the indoor environment, the loud environment resulted in much higher readings. I then compared light readings by turning on a bright light and covering up a sensor and turning off the light for dark conditions. Overall, I found that both the light and sound sensors were accurate, in both warm and cold conditions. The results are summarised in the graph below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 18.22.28.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 18.22.28.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Criterion 6 - App functionality and robustness
 
@@ -182,15 +182,15 @@ I will test four areas to test the function and robustness of the user interface
 
 #### Dealing with connection errors
 
-During the tests in [Criterion 1](3.1-robustness.md#criterion-1-collection-of-weather-data), I examined the ability of the weather station to cope with errors relating to internet connection and network. In this section, I will test the overall system's ability to cope with this error, as well as informing the user of the issue.&#x20;
+During the tests in [Criterion 1](./#criterion-1-collection-of-weather-data), I examined the ability of the weather station to cope with errors relating to internet connection and network. In this section, I will test the overall system's ability to cope with this error, as well as informing the user of the issue.&#x20;
 
 To conduct this test, I deactivated the weather station so that it would not collect any data and left the rest of the system running to see how it would respond. I found that the user interface continued to display the most recent data, and it did not cause any errors in the system. The user interface also informed the user when data readings were last taken, allowing the user to make a judgement on how accurate these readings are (shown by the red box below).&#x20;
 
-<figure><img src="../.gitbook/assets/spaces_9qznOLYuORqyQqywceGp_uploads_FKJgcRBPIhpBW1KhMGN6_Screenshot 2023-09-15 at 10.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/spaces_9qznOLYuORqyQqywceGp_uploads_FKJgcRBPIhpBW1KhMGN6_Screenshot 2023-09-15 at 10.png" alt="" width="563"><figcaption></figcaption></figure>
 
 The user interface is also able to deal with network errors on the about page, indicated by the red box below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-15 at 11.47.56.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-15 at 11.47.56.png" alt="" width="563"><figcaption></figcaption></figure>
 
 As shown above, the user interface informs the user that the weather station is currently offline, and provides information on when data was last received and when the device was first activated. The app correctly identified the connection error to the weather station, and displayed this information in a user-friendly form. The app also contains a link to the help page, which provides the user with instructions on how to resolve the issue.
 
@@ -206,17 +206,17 @@ var testData = mongoose.model('testData', myDataSchema)
 
 The results of this can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 11.41.05.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 11.41.05.png" alt="" width="563"><figcaption></figcaption></figure>
 
 Without any data in the database, the app is still able to function correctly, without reporting any errors in the console. No data was displayed on the temperature, humidity, dust, light and sound graphs as expected. While the first point on the temperature prediction graph was missing, the rest of the graph was displayed as expected, showing predicted minimum and maximum temperatures. The current conditions display and 14-day weather forecast also worked correctly, as it is independent from the rest of the system. Similarly, the weather history page was left empty due to there being no data stored in the database, but did not result in any errors. A notification explaining the issue was displayed on the user interface.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.02.56.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.02.56.png" alt="" width="563"><figcaption></figcaption></figure>
 
 I then added some test data to the cluster testData, and reloaded the user interface.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 12.14.52.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 12.14.52.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 12.15.43.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 12.15.43.png" alt="" width="375"><figcaption></figcaption></figure>
 
 **Back-end and weather condition display failures**
 
@@ -224,17 +224,17 @@ Catching any fetch errors and explaining the issue to the user is another vital 
 
 To simulate a back-end failure, I started up the react app without running the back-end. As expected, errors relating to the failed fetch attempt were displayed in the console.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 22.57.41.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 22.57.41.png" alt="" width="563"><figcaption></figcaption></figure>
 
 However, this error did not stop the user interface itself from running. Instead, the user received a notification, explaining the error, and the appropriate course of action to fix it. This can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.00.18.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.00.18.png" alt="" width="563"><figcaption></figcaption></figure>
 
 During Cycle 6 - 6.2 Current Conditions, one issue I found during testing was that on occasion, the weather API would respond with a missing header, resulting in the text for the current condition not being received. Therefore, in cases where this data is missing, the weather app must be able to catch the error and explain the issue to the user. To test this, I altered the API request so that it would return an error. This resulted in the error being displayed in the console, and a new notification being sent to the user.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.12.57.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.12.57.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.12.17.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.12.17.png" alt="" width="563"><figcaption></figcaption></figure>
 
 **Browser and device testing**
 
@@ -242,12 +242,12 @@ The final test I need to conduct for function and robustness is ensuring that th
 
 I then tested the apps performance and responsiveness on a variety of different device screen sizes and orientations, as can be seen below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.27.05.png" alt="" width="245"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.27.05.png" alt="" width="245"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.27.40.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.27.40.png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.29.02.png" alt="" width="271"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.29.02.png" alt="" width="271"><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-16 at 23.29.44.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-09-16 at 23.29.44.png" alt=""><figcaption></figcaption></figure>
 
 Overall, the app functioned correctly and robust on all the browsers and devices tested. This test has now passed.

@@ -2,9 +2,9 @@
 
 ## Systems Diagram
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-11 at 09.55.50.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-10-20 at 10.06.41.png" alt=""><figcaption></figcaption></figure>
 
-This diagram shows the different parts of the weather monitoring and prediction system that I will be focusing on. I have split each section into smaller sub-sections, using [computional methods ](../analysis/1.4b-computational-methods.md)such as decomposition. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece the personal weather station together. Blue sections represent features that I must include for my solution to be functional, while the purple section includes features that a stakeholder may want to include but are not essential to completing the project. Each of these components corresponds roughly to the [sucess criteria](../analysis/1.5-success-criteria.md).
+This diagram shows the different parts of the weather monitoring and prediction system that I will be focusing on. I have split each section into smaller sub-sections, using [computational methods](../analysis/1.4b-computational-methods.md) such as decomposition. Throughout the development stage, I will pick one or two of these sections to focus on at a time to gradually build up and piece the personal weather station together. Blue sections represent features that I must include for my solution to be functional, while the purple section includes features that a stakeholder may want to include but are not essential to completing the project. Each of these components corresponds roughly to the [success criteria](../analysis/1.5-success-criteria.md).
 
 ## Usability Features
 
@@ -24,9 +24,9 @@ As well as the weather station communicating with the app, communication between
 
 ### Efficiency
 
-Making my project efficient involves making the weather station easy to set up and use so that the stakeholder can quickly monitor their outdoor environment. The app must be easy to navigate and connect to the weather station, and then be updated automatically with accurate weather information. To simplify the setting up process, the user should only have to follow basic instructions before setting up the device. Once this is done, they should quickly start recieving usable weather data from the app.
+Making my project efficient involves making the weather station easy to set up and use so that the stakeholder can quickly monitor their outdoor environment. The app must be easy to navigate and connect to the weather station, and then be updated automatically with accurate weather information. To simplify the setting up process, the user should only have to follow basic instructions before setting up the device. Once this is done, they should quickly start receiving usable weather data from the app.
 
-All previous measurements must be recorded so that trends tracked by the user. This will also allow the device to detect sudden changes in weather conditions. Another important feature of my solution is therefore how data is stored. Previous weather information should be recorded on a online database, so that it can be quickly and efficiently accessed by a user upon request.
+All previous measurements must be recorded so that trends are tracked by the user. This will also allow the device to detect sudden changes in weather conditions. Another important feature of my solution is therefore how data is stored. Previous weather information should be recorded on an online database, so that it can be quickly and efficiently accessed by a user upon request.
 
 #### Aims
 
@@ -36,7 +36,7 @@ All previous measurements must be recorded so that trends tracked by the user. T
 
 ### Engaging
 
-Making the solution for the user will ensure that the device is interesting and easy to use. While the main purpose of this project is to provide a stakeholder usable information about their local environment, my solution must still be engaging and interesting to use. I must also ensure my solution preferable to other traditional weather applications. To achive this, I will try to make the app as engaging as possible. I will give the app a colourful design, and use tables and graphs to display weather data in an interesting way. By carefully considering the design of the weather station, I will be able grab the attention of the user so that they can make the best use of the personal weather station's features.
+Making the solution for the user will ensure that the device is interesting and easy to use. While the main purpose of this project is to provide a stakeholder usable information about their local environment, my solution must still be engaging and interesting to use. I must also ensure my solution is preferable to other traditional weather applications. To achieve this, I will try to make the app as engaging as possible. I will give the app a colourful design, and use tables and graphs to display weather data in an interesting way. By carefully considering the design of the weather station, I will be able to grab the attention of the user so that they can make the best use of the personal weather station's features.
 
 #### Aims
 
@@ -54,7 +54,7 @@ In order to ensure my solution is error tolerant, I need to program the app to b
 
 ### Easy To Learn
 
-To ensure that my weather monitoring system isn't to complicated for a stakeholder to use, I need to simplify the setting up process as much as possible. On the app I will need to include a section that explains how to set up and use the weather station, and how to connect it to the internet. From there, the app must be straight forward to use and shouldn't require much additional guidence. The stakeholder should start recieving inputs from their outdoor environment on the app and easily understand the data being presented.
+To ensure that my weather monitoring system isn't too complicated for a stakeholder to use, I need to simplify the setting up process as much as possible. On the app I will need to include a section that explains how to set up and use the weather station, and how to connect it to the internet. From there, the app must be straightforward to use and shouldn't require much additional guidance. The stakeholder should start receiving inputs from their outdoor environment on the app and easily understand the data being presented.
 
 #### Aims
 
