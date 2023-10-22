@@ -20,7 +20,6 @@ As well as the weather station communicating with the app, communication between
 
 * The personal weather station will need to automatically take readings from the environment at regular intervals&#x20;
 * It must then be able to communicate with the app wirelessly without input from the user
-* The user interface will then need to display weather monitoring and forecasting information visually
 
 ### Efficiency
 
