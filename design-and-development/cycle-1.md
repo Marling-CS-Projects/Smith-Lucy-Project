@@ -22,6 +22,8 @@ In this cycle, I need to ensure that my weather station can easily be used and n
 
 ### Pseudocode
 
+In this cycle, my overall aim is to design a program for the Particle Argon that takes readings using sensors from the environment and prints them in the console. This program is vital to the functioning of the weather monitoring and forecasting system as it will allow current conditions to be displayed on the user interface, and predictions to be made using this data. The basic pseudocode for this algorithm can be found below.
+
 ```
 int temp = 0
 int humidity = 0
@@ -198,7 +200,7 @@ After checking that the program for the Barometer Sensor still passed, I moved o
 
 #### Air Quality
 
-The next sensor I programmed was the air quality sensor, which takes a reading from the environment and assigns the current air quality to either 'Fresh Air',  'Low Pollution', 'High Pollution', or 'Dangerous Level'. I used the Air quality sensor library for this. The code for the air quality monitoring can be seen below.&#x20;
+The next sensor I programmed was the air quality sensor, which takes a reading from the environment and assigns the current air quality to either 'Fresh Air',  'Low Pollution', 'High Pollution', or 'Dangerous Level'. This will allow me to provide the stakeholder with information about the afety and air qualitiy of their environment.  I used the Air quality sensor library for this. The code for the air quality monitoring can be seen below.&#x20;
 
 ```cpp
 //Library for air quality sensor
@@ -250,7 +252,7 @@ After running the code, I was successfully able to get an output for the air qua
 
 #### Dust Concentration
 
-The next sensor I will set up is the dust sensor. According to the particle argon documentation, this sensor requires several formulas to calculate dust concentration, which are found in the code below. I used the math.h library to assist these calculations. The dust concentration is measured by using infrared light at constant intervals. I decided to use an interval of 30000 milliseconds.
+The next sensor I will set up is the dust sensor, as it will provide the user with more detailed information about the concentration of dust and pollution in the atmosphere surrounding their local area. According to the particle argon documentation, this sensor requires several formulas to calculate dust concentration, which are found in the code below. I used the math.h library to assist these calculations. The dust concentration is measured by using infrared light at constant intervals. I decided to use an interval of 30000 milliseconds.
 
 <pre class="language-cpp" data-full-width="false"><code class="lang-cpp">// Adds math library for pow()
 #include &#x3C;math.h>
@@ -360,7 +362,7 @@ void loop() {
 
 #### Light
 
-The next stage to programming my weather station is designing a program that can measure light readings.
+The next stage to programming my weather station is designing a program that can measure light readings. Light intensity is also another factor that can be monitored in the environment. I decided to include this sensor in my project as it provides the user with personalised information about light which would not be available on a usual monitoring system. This would be especially useful to stakeholders in the agricultural industry. The program for this can be seen below.
 
 <pre class="language-cpp"><code class="lang-cpp">// Set light pin to A0
 int lightPin = A0;
@@ -397,7 +399,7 @@ After checking that I was receiving readings, I compared sensor readings in dark
 
 #### Sound
 
-In the next stage of this cycle, I added the following code to the program to take readings of sound from the environment.
+The next aspect of my weather station which a stakeholder may wish to monitor in their local environment is sound. I attached this sensor to the A4 pin and added the following code below to collect these readings.
 
 ```cpp
 // SOUND SENSOR
