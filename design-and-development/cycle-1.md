@@ -102,7 +102,7 @@ In this part of the cycle, I wanted to get used to programming the Particle Argo
 
 I first set up the particle argon and attached it to a grove shield board. I then attached a sensor to the 12C\_2 pin, and connected it to a lithium battary so I could test the device wirelessly. After looking at the basic documentation for using the air quality monitoring sensors, I then designed my own program to collect readings from the environment [(docs.particle.io, 2017)](../evaluation/reference-list.md).&#x20;
 
-The program in C++ that I used to collect data from the BME280 sensor can be seen below. I used the Adafruit\_BME280 library to help me collect data from these sensors.
+When setting up Visual Studio Code, I used the Particle Workbench extension pack. The program in C++ that I used to collect data from the BME280 sensor can be seen below. I used the Adafruit\_BME280 library to help me collect data from these sensors.
 
 <pre class="language-cpp"><code class="lang-cpp">// Temperature, humidity, air pressure and altitude sensor library
 <strong>#include "Adafruit_BME280.h"
@@ -331,7 +331,7 @@ Particle.variable("conc", concentration);
 
 <figure><img src="../.gitbook/assets/Screenshot 2023-06-09 at 18.04.35.png" alt=""><figcaption></figcaption></figure>
 
-As this was an error with the particle cloud and not the program itself, I ran the same code again and received the following outputs. As expected, I received readings for concentration of dust as well as other sensors. To overcome the issue of uploading to the particle cloud, I instead published data values as events, which can be seen below. This now passed the test.&#x20;
+As this was an error with the particle cloud and not the program itself, I ran the same code again and received the following outputs. As expected, I received readings for concentration of dust as well as other sensors. To overcome the issue of uploading to the particle cloud, I instead published data values as events, which can be seen below. I used the Json Parser Generator Library for this. This now passed the test.&#x20;
 
 ```cpp
 #include "JsonParserGeneratorRK.h"
